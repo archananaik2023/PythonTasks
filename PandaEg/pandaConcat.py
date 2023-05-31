@@ -1,16 +1,15 @@
 import numpy as np
+
 import pandas as pd
 
-df1 = pd.read_csv("nba.csv")
-  
-# Creating second dataframe
-df2 = pd.read_csv("nba1.csv")
-  
-# Creating third dataframe
-df3 = pd.read_csv("nba1.csv")
-  
-# Concatenating the dataframes
+# Suppressing warnings
+import warnings
+warnings.simplefilter("ignore")
 
-concatenated_df = pd.concat([df1, df2, df3], ignore_index=True)
-concatenated_df.index = concatenated_df.index + 1
-print(concatenated_df)
+
+df_1 = pd.read_csv('https://query.data.world/s/vv3snq28bp0TJq2ggCdxGOghEQKPZo')
+df_2 = pd.read_csv('https://query.data.world/s/9wVKjNT0yiRc3YbVJaiI8a6HGl2d74')
+
+df_3 = pd.concat([df_1, df_2])
+
+print(df_3.head())

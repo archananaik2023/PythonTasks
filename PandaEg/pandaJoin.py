@@ -10,3 +10,4 @@ df = left.join(right.set_index("Name"), on="Name", lsuffix='_left', rsuffix='_ri
 
 
 print("Joined df:\n", df)
+
