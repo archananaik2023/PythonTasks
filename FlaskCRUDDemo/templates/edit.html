@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Record</title>
+  </head>
+  <body>
+    <h1>Edit Record</h1>
+    <form id="put-form">
+      <input type="hidden" name="_METHOD" value="PUT" />
+      <input type="hidden" name="id" id="id" value="{{ record[0] }}" />
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="{{ record[1] }}"><br><br>
+      <label for="age">Age:</label>
+      <input type="text" id="age" name="age" value="{{ record[2] }}"><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="{{ record[3] }}"><br><br>
+      <input type="submit" value="Save">
+      <input type="submit" value="Back" onclick="goBack()">
+    </form>
+
+    <script>
+    var form = document.getElementById('put-form');
+
+    form.addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent the default form submission
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', '/record/' + form.elements['id'].value);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+          alert('Record updated successfully ' );
+        } else {
+            alert('Error: ' + xhr.statusText);
+        }
+    };
+        var data = new FormData(form);
+        xhr.send(new URLSearchParams(data).toString());
+    });
+
+    function goBack() {
+        window.location.href = '/';
+    }
+    </script>
+  </body>
+</html>
